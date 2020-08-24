@@ -40,8 +40,11 @@ function each(callback) {
 
 function write(key, data, options) {
 	if(!key) { return }
+	console.log('before assign:', options)
 	var opts = options ? options : ""
+	console.log('at assign:', opts)
 	doc.cookie = escape(key) + "=" + escape(data) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/" + opts
+	console.log('actual cookie set:', escape(key) + "=" + escape(data) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/" + opts )
 }
 
 function remove(key) {
