@@ -38,13 +38,14 @@ function each(callback) {
 	}
 }
 
-function write(key, data, options) {
+function write(key, data, expire, options) {
 	if(!key) { return }
 	console.log('before assign:', options)
-	var opts = options ? options : ""
+	var opts = options ? options : "Secure"
+	var maxAge = expire ? expire : 14400 //defaults to as save 4h
 	console.log('at assign:', opts)
-	doc.cookie = escape(key) + "=" + escape(data) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/" + opts
-	console.log('actual cookie set:', escape(key) + "=" + escape(data) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/" + opts )
+	doc.cookie = escape(key) + "=" + escape(data) + "; max-age:" + maxAge + "; " + opts
+	console.log('actual cookie set:',escape(key) + "=" + escape(data) + "; max-age:" + maxAge + "; " + opts )
 }
 
 function remove(key) {
